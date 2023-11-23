@@ -1,11 +1,8 @@
-import { DOMAIN_BACKEND } from "./config.js";
-
-
 const checkout = document.getElementById("checkout");
 
 async function pay_test() {
     try {
-        let res = await fetch(`${DOMAIN_BACKEND}/create-order`, {
+        let res = await fetch('https://simple-prueba-a-produccion.onrender.com/create-order', {
             method: "POST"
         }),
             json = await res.json();
