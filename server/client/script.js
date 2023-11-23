@@ -2,7 +2,7 @@ const checkout = document.getElementById("checkout");
 
 async function pay_test() {
     try {
-        let res = await fetch('https://simple-prueba-a-produccion.onrender.com/create-order', {
+        let res = await fetch('/create-order', {
             method: "POST"
         }),
             json = await res.json();
