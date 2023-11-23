@@ -1,12 +1,20 @@
 import 'dotenv/config';
-import Express from "express";
+import express from "express";
+import cors from "cors";
+import paymentRoutes from "./routes/payment.routes.js";
+import morgan from "morgan";
+import path from "path";
 
-const app = Express()
+const app = express();
 
-app.get('/', function (req, res) {
-  res.set({"content-type": "text/html; charset=utf-8"});
-  res.send("<h1>Hola buenas aa qué tal</h1>");
-});
+// Proxy.
+app.use(morgan("dev"));
+app.use(cors({
+    origin: process.env.DOMAIN_FRONTEND
+}));
+
+app.use(paymentRoutes);
+app.use(express.static(path.resolve("client")))
 
 app.listen(process.env.PORT, () => {
     console.log(`Servidor escuchando en http://localhost:${process.env.PORT}`);
